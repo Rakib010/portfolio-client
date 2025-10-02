@@ -1,3 +1,5 @@
+import Sidebar from "@/components/navbar/Sidebar";
+
 export default function PublicLayout({
   children,
 }: Readonly<{
@@ -5,7 +7,10 @@ export default function PublicLayout({
 }>) {
   return (
     <>
-      <main className="min-h-dvh">{children}</main>
+      <main className="min-h-dvh">
+        <Sidebar />
+        {children}
+      </main>
     </>
   );
 }

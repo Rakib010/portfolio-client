@@ -34,7 +34,7 @@ export default function BlogDetailsCard({
       )}
 
       {/* Title */}
-      <h1 className="text-4xl md:text-5xl font-bold mb-4">{blog.title}</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-4">{blog.title}</h1>
 
       {/* Metadata */}
       <div className="flex items-center gap-4 text-gray-400 mb-8">
