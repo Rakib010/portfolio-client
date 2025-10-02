@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import BlogCard from "@/components/modules/blog/BlogCard";
+import BlogCard from "@/components/blog/BlogCard";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -31,12 +31,14 @@ function LoginForm() {
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log("Form Values:", values);
     // TODO: call your backend login API here
-    
   };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6 border p-4"
+      >
         {/* Email Field */}
         <FormField
           control={form.control}

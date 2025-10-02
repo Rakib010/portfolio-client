@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import BlogDetailsCard from "@/components/modules/blog/BlogDetailsCard";
+import BlogDetailsCard from "@/components/blog/BlogDetailsCard";
 
 export const generateStaticParams = async () => {
   const res = await fetch(`${process.env.BASE_API}/blog`, {
