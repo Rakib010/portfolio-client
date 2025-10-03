@@ -20,7 +20,7 @@ function DashboardSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="h-screen w-64 bg-gray-900 text-white flex flex-col">
+    <aside className="fixed top-0 h-screen w-64 bg-gray-900 text-white flex flex-col ">
       {/* Brand / Logo */}
       <Link
         href="/about"

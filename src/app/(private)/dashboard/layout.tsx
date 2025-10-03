@@ -8,7 +8,9 @@ export default function DashboardLayout({
   return (
     <main className="flex">
       <DashboardSidebar />
-      {children}
+      <div className="flex-1 py-10 ml-64 ">
+        {children}
+      </div>
     </main>
   );
 }

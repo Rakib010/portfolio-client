@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const AllBlogsPage = async () => {
   // ISR enabled fetch
-  const res = await fetch(`${process.env.BASE_API}/blog`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog`, {
     next: { revalidate: 60 },
   });
 

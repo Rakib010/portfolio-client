@@ -2,7 +2,7 @@
 import BlogDetailsCard from "@/components/blog/BlogDetailsCard";
 
 export const generateStaticParams = async () => {
-  const res = await fetch(`${process.env.BASE_API}/blog`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/blog`, {
     next: { revalidate: 60 },
   });
   console.log("Fetching all blogs for static params:", res);
@@ -19,9 +19,12 @@ export const generateMetadata = async ({
 }: {
   params: { id: string };
 }) => {
-  const res = await fetch(`${process.env.BASE_API}/blog/${params.id}`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API}/blog/${params.id}`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
   const blog = await res.json();
 
   return {
@@ -35,9 +38,12 @@ export default async function BlogDetailsPage({
 }: {
   params: { id: string };
 }) {
-  const res = await fetch(`${process.env.BASE_API}/blog/${params.id}`, {
-    next: { revalidate: 60 },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_API}/blog/${params.id}`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
 
   if (!res.ok) {
     return <div className="text-center py-20">Blog not found</div>;

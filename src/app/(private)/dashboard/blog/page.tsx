@@ -1,5 +1,11 @@
+import BlogForm from "@/components/dashboard/BlogForm";
+
 function BlogDashboardPage() {
-  return <div>page</div>;
+  return (
+    <div>
+      <BlogForm />
+    </div>
+  );
 }
 
 export default BlogDashboardPage;
