@@ -9,7 +9,7 @@ export default function PublicLayout({
     <>
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 min-h-screen px-[5%] py-25 ml-[calc(16%+20rem)] mt-10">
+        <main className="flex-1 min-h-screen px-[6%] py-25 ml-[calc(16%+20rem)] mt-10">
           {children}
         </main>
       </div>
