@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,7 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-// Form schema with email + password validation
+// Validation schema
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
   password: z
@@ -26,55 +25,96 @@ const formSchema = z.object({
 function LoginForm() {
   const form = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: { email: "", password: "" },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Form Values:", values);
-    // TODO: call your backend login API here
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API}/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          // credentials: "include", // cookie handle
+          body: JSON.stringify(values),
+        }
+      );
+
+      const data = await res.json();
+
+      console.log("Login response:", data);
+      alert("Login successful!");
+
+      // redirect or success toast
+      window.location.href = "/dashboard";
+    } catch (err) {
+      alert("Something went wrong!");
+    }
   };
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6 border p-4"
-      >
-        {/* Email Field */}
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input type="email" placeholder="example@mail.com" {...field} />
-              </FormControl>
-              <FormDescription>Enter your admin email.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <div className="flex justify-center items-center min-h-screen px-4">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-full max-w-md rounded-2xl shadow-xl p-8 space-y-6 border border-gray-200"
+        >
+          {/* Title */}
+          <div className="text-center">
+            <h2 className="text-2xl font-bold ">Admin Login</h2>
+            <p className="text-sm  mt-1">Please sign in to continue</p>
+          </div>
 
-        {/* Password Field */}
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Password</FormLabel>
-              <FormControl>
-                <Input type="password" placeholder="********" {...field} />
-              </FormControl>
-              <FormDescription>Enter your secure password.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          {/* Email */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-gray-100">Email</FormLabel>
+                <FormControl>
+                  <Input
+                    type="email"
+                    placeholder="admin@example.com"
+                    {...field}
+                    className=""
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        {/* Submit Button */}
-        <Button type="submit">Login</Button>
-      </form>
-    </Form>
+          {/* Password */}
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-gray-100">Password</FormLabel>
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder="********"
+                    {...field}
+                    className=""
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Button */}
+          <Button
+            type="submit"
+            className="w-full bg-teal-700 transition-all text-white py-2 rounded-lg"
+          >
+            Login
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 }
 

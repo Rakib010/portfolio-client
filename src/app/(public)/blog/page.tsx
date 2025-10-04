@@ -16,9 +16,9 @@ const AllBlogsPage = async () => {
   const { data: blogs } = await res.json();
 
   return (
-    <div className="mt-10 px-4 max-w-7xl mx-auto">
+    <div className="px-10 max-w-7xl mx-auto">
       <div>
-        <div className="flex flex-col gap-4 max-w-6xl mx-auto my-8">
+        <div className="flex flex-col gap-4 max-w-6xl mx-auto px-10">
           {blogs?.map((blog: any) => (
             <BlogCard key={blog?._id} post={blog} />
           ))}

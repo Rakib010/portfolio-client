@@ -15,10 +15,10 @@ export default function BlogCard({ post }: { post: BlogCardProps["post"] }) {
   return (
     <Link
       href={`/blog/${post._id}`}
-      className="group flex items-center gap-4 border border-gray-700 rounded-lg p-4 hover:border-teal-400 transition"
+      className="group flex items-center gap-4 border border-gray-700 rounded-lg p-6 hover:border-teal-400 transition"
     >
       {/* Thumbnail Left */}
-      <div className="relative w-24 h-16 flex-shrink-0">
+      <div className="relative w-28 h-18 flex-shrink-0">
         <Image
           src={post.thumbnail}
           alt={post.title}
