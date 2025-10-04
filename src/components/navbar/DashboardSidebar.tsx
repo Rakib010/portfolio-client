@@ -6,7 +6,6 @@ import {
   FileText,
   FolderGit2,
   User,
-  LogOut,
 } from "lucide-react";
 
 const menuItems = [
@@ -51,19 +50,6 @@ function DashboardSidebar() {
           })}
         </ul>
       </nav>
-
-      {/* Logout Button */}
-      <div className="p-4 border-t border-gray-700">
-        <button
-          onClick={() => {
-            window.location.href = "/login";
-          }}
-          className="w-full flex items-center gap-3 px-4 py-2 bg-red-600 rounded-lg hover:bg-red-700 transition"
-        >
-          <LogOut size={20} />
-          Logout
-        </button>
-      </div>
     </aside>
   );
 }

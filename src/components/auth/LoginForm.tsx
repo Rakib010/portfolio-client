@@ -13,6 +13,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 // Validation schema
 const formSchema = z.object({
@@ -30,25 +32,15 @@ function LoginForm() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API}/auth/login`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          // credentials: "include", // cookie handle
-          body: JSON.stringify(values),
-        }
-      );
-
-      const data = await res.json();
-
-      console.log("Login response:", data);
-      alert("Login successful!");
-
-      // redirect or success toast
-      window.location.href = "/dashboard";
+      signIn("credentials", {
+        /* email: values.email,
+        password: values.password, */
+        ...values,
+       // redirect: true,
+        callbackUrl: "/dashboard",
+      });
     } catch (err) {
-      alert("Something went wrong!");
+      toast.error("Something went wrong!");
     }
   };
 

@@ -12,6 +12,7 @@ export default function Sidebar() {
     { href: "/skills", label: "Skills" },
     { href: "/projects", label: "Projects" },
     { href: "/blog", label: "Blog" },
+    { href: "/dashboard", label: "Dashboard" },
   ];
 
   return (

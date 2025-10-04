@@ -1,9 +1,14 @@
-function DashboardPage() {
+import { getUserSession } from "@/helpers/getUserSession";
+
+const DashboardPage = async () => {
+  const session = await getUserSession();
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-5xl">
-      <h1>welcome to Dashboard</h1>
+    <div className="p-10 text-2xl">
+      <h1>welcome, {session?.user?.name}</h1>
+      <h1>Email : {session?.user?.email}</h1>
     </div>
   );
-}
+};
 
 export default DashboardPage;

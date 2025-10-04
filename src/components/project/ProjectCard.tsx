@@ -7,7 +7,7 @@ import Link from "next/link";
 function ProjectCard({ project }: { project: any }) {
   return (
     <Link href={`/projects/${project._id}`} passHref>
-      <div className="group relative rounded-xl overflow-hidden transition-transform transform hover:scale-105 hover:bg-[#0a192f] hover:shadow-lg cursor-pointer flex flex-col md:flex-row mt-6 gap-6 p-8">
+      <div className="group relative rounded-xl border-1 border-gray-700 overflow-hidden transition-transform transform hover:scale-105 hover:bg-[#0a192f] hover:shadow-lg cursor-pointer flex flex-col md:flex-row mt-6 gap-6 p-8">
         {/* Thumbnail */}
         {project.thumbnail ? (
           <div className="relative w-full md:w-48 h-48 md:h-32 flex-shrink-0">
