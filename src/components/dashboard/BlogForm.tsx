@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { success, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -15,6 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
+import { tr } from "zod/v4/locales";
 
 // Validation schema
 const blogSchema = z.object({
@@ -27,8 +28,6 @@ const blogSchema = z.object({
 type BlogFormValues = z.infer<typeof blogSchema>;
 
 export default function BlogForm() {
-  const [loading, setLoading] = useState(false);
-
   const form = useForm<BlogFormValues>({
     resolver: zodResolver(blogSchema),
     defaultValues: {
@@ -41,8 +40,6 @@ export default function BlogForm() {
 
   const onSubmit = async (values: BlogFormValues) => {
     try {
-      setLoading(true);
-
       // tags string to array
       const payload = {
         ...values,
@@ -54,16 +51,14 @@ export default function BlogForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
       const data = await res.json();
-      console.log("✅ Blog Created:", data);
-      alert("Blog Created Successfully!");
-      form.reset();
+      if (data.success) {
+        toast.success("Blog Created Successfully!");
+        form.reset();
+      }
     } catch (err) {
       console.error("❌ Error:", err);
-      alert("Failed to create blog");
-    } finally {
-      setLoading(false);
+      toast.error("Failed to create blog");
     }
   };
 
@@ -144,8 +139,8 @@ export default function BlogForm() {
           />
 
           {/* Submit Button */}
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Submitting..." : "Submit"}
+          <Button type="submit" className="w-full bg-gray-700">
+            Submit
           </Button>
         </form>
       </Form>

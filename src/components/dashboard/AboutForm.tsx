@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
 
 // Validation Schema
 const aboutSchema = z.object({
@@ -57,10 +58,10 @@ export default function AboutForm() {
         }
       );
       const data = await res.json();
-      alert("About Created Successfully!");
+      toast.success("About Created Successfully!");
     } catch (err) {
       console.error("❌ Error:", err);
-      alert("Failed to create about");
+      toast.error("Failed to create about");
     }
   };
 

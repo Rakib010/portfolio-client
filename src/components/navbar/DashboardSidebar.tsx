@@ -10,8 +10,10 @@ import {
 
 const menuItems = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Blogs", href: "/dashboard/blog", icon: FileText },
+  { name: "Create Blogs", href: "/dashboard/blog", icon: FileText },
+  { name: "All Blogs", href: "/dashboard/allblogs", icon: FileText },
   { name: "Projects", href: "/dashboard/project", icon: FolderGit2 },
+  { name: "All Projects", href: "/dashboard/allprojects", icon: FolderGit2 },
   { name: "About Me", href: "/dashboard/about", icon: User },
 ];
 
